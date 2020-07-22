@@ -1,4 +1,5 @@
 ﻿# Reactivities (Full Stack App):
+![Arch](https://habrastorage.org/web/22b/033/c50/22b033c50a144c7491662c8cd292fbab.jpg)
 * ASP.NET Core 3.1
 * JWT
 * MediatR
