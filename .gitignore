@@ -102,6 +102,7 @@ fabric.properties
 *.userprefs
 
 # Build results
+/client-app/node-modules
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -357,3 +358,4 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+!/client-app/node_modules/
