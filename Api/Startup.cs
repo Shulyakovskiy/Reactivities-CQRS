@@ -1,3 +1,7 @@
+using System.Reflection;
+using Application.Activities;
+using Application.Activities.Query;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +38,8 @@ namespace Api
                         .WithOrigins("*");
                 });
             });
+            services.AddMediatR(typeof(ListActivities.Handler).Assembly);
+            // services.AddMediatR(typeof(Startup));
             services.AddControllers();
         }
 
