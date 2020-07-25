@@ -18,4 +18,4 @@
 * POSTMAN
 * requirement (node/yarn/Typescript/.Net Core 3.1)
 * cd Api & dotnet run
-* cd client-app & yarn start
+* cd client-app & yarn install & yarn start
