@@ -15,6 +15,7 @@
 * Semantic UI
 ----------------
 ## Run Application:
+* Swagger(OA S3) - localhost:<port>/swagger/
 * POSTMAN
 * requirement (node/yarn/Typescript/.Net Core 3.1)
 * cd Api & dotnet run
