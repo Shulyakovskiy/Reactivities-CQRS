@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Ls.Application.Activities.Command;
@@ -21,32 +22,37 @@ namespace Ls.Api.Controllers
             _mediator = mediator;
         }
 
+        [Route("List")]
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> List(CancellationToken ct)
         {
             return await _mediator.Send(new ListActivities.Query(), ct);
         }
 
-        [HttpGet("{id}")]
+        [Route("Details/{id}")]
+        [HttpGet]
         public async Task<ActionResult<Activity>> Details(Guid id)
         {
             return await _mediator.Send(new DetailsActivities.Query {Id = id});
         }
 
+        [Route("Create")]
         [HttpPost]
-        public async Task<ActionResult<Unit>> Create([FromBody] CreateActivities.Command command)
+        public async Task<ActionResult<Unit>> Create([FromBody, Required] CreateActivities.Command command)
         {
             return await _mediator.Send(command);
         }
 
-        [HttpPut("{id}")]
+        [Route("Edit/{id}")]
+        [HttpPut]
         public async Task<ActionResult<Unit>> Edit(Guid id, EditActivities.Command command)
         {
             command.Id = id;
             return await _mediator.Send(command);
         }
 
-        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        [HttpDelete]
         public async Task<ActionResult<Unit>> Delete(Guid id, EditActivities.Command command)
         {
             command.Id = id;

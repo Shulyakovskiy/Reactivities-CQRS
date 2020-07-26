@@ -1,3 +1,4 @@
+using System;
 using Ls.Application.Activities.Query;
 using Ls.Persistence;
 using MediatR;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace Ls.Api
 {
@@ -39,11 +41,26 @@ namespace Ls.Api
             services.AddMediatR(typeof(ListActivities.Handler).Assembly);
             // services.AddMediatR(typeof(Startup));
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(c => c.FullName);
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Reactivities API"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reactivities API V1");
+                c.DocumentTitle = "Reactivities API";
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
