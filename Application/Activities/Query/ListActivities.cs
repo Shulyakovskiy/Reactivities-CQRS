@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
 using JetBrains.Annotations;
+using Ls.Domain;
+using Ls.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Persistence;
 
-namespace Application.Activities.Query
+namespace Ls.Application.Activities.Query
 {
     [UsedImplicitly]
     public class ListActivities

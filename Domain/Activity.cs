@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain
+namespace Ls.Domain
 {
     public class Activity
     {

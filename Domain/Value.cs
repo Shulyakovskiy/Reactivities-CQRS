@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Ls.Domain
 {
     public class Value
     {

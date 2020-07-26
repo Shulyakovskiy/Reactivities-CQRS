@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Domain;
+using Ls.Domain;
+using Ls.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Persistence;
 
-namespace Api.Controllers
+namespace Ls.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

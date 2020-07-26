@@ -2,10 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>Ls.Api</AssemblyName>
+        <RootNamespace>Ls.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Application\Ls.Application.csproj" />
+      <ProjectReference Include="..\Persistence\Ls.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>

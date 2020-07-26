@@ -1,13 +1,15 @@
 using System;
+using JetBrains.Annotations;
+using Ls.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Persistence;
 
-namespace Api
+namespace Ls.Api
 {
+    [UsedImplicitly]
     public class Program
     {
         public static void Main(string[] args)

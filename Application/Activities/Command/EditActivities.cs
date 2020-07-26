@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Ls.Persistence;
 using MediatR;
-using Persistence;
 
-namespace Application.Activities.Command
+namespace Ls.Application.Activities.Command
 {
     [UsedImplicitly]
     public class EditActivities

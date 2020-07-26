@@ -1,6 +1,5 @@
-using System.Reflection;
-using Application.Activities;
-using Application.Activities.Query;
+using Ls.Application.Activities.Query;
+using Ls.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,9 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Persistence;
 
-namespace Api
+namespace Ls.Api
 {
     public class Startup
     {

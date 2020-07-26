@@ -1,7 +1,7 @@
-﻿using Domain;
+﻿using Ls.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence
+namespace Ls.Persistence
 {
     public class DataContext : DbContext
     {

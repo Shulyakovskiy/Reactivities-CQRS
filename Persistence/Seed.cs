@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain;
+using Ls.Domain;
 
-namespace Persistence
+namespace Ls.Persistence
 {
     public class Seed
     {

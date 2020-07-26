@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
 using JetBrains.Annotations;
+using Ls.Domain;
+using Ls.Persistence;
 using MediatR;
-using Persistence;
 
-namespace Application.Activities.Command
+namespace Ls.Application.Activities.Command
 {
     [UsedImplicitly]
     public class CreateActivities
