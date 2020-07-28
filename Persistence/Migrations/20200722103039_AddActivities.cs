@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Persistence.Migrations
+namespace Ls.Persistence.Migrations
 {
     public partial class AddActivities : Migration
     {

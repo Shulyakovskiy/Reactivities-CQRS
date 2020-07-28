@@ -12,7 +12,7 @@ namespace Ls.Application.Activities.Command
     {
         public class Command : IRequest
         {
-            public Guid Id { get; }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>

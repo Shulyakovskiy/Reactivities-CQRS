@@ -1,42 +1,33 @@
 ﻿import * as  React from "react";
-import {Grid, List} from "semantic-ui-react";
-import {IActivity} from "../../../src/app/model";
+import {useContext} from "react";
+import {Grid} from "semantic-ui-react";
 import {ActivityDetails, ActivityList} from "../index";
 import ActivityForm from "../form/ActivityForm";
+import {observer} from "mobx-react-lite";
+import {ActivitiesStore} from "../../../src/app/stores";
 
-interface IProps {
-    activities: IActivity[];
-    selectActivity: (id: string) => void;
-    selectedActivity: IActivity | null;
-    editMode: boolean;
-    setEditMode: (editMode: boolean) => void;
-    setSelectedActivity: (activity: IActivity | null) => void;
-}
-
-const ActivityDashBoard: React.FC<IProps> = ({
-                                                 activities,
-                                                 selectActivity,
-                                                 selectedActivity,
-                                                 editMode,
-                                                 setEditMode,
-                                                 setSelectedActivity
-                                             }) => {
+const ActivityDashBoard: React.FC = () => {
+    const activityStore = useContext(ActivitiesStore);
+    const {editMode, selectedActivity} = activityStore;
     return (
         <Grid>
             <Grid.Column width={10}>
-                <ActivityList activities={activities} selectActivity={selectActivity}/>
+                <ActivityList/>
             </Grid.Column>
             <Grid.Column width={6}>
-                {
-                    selectedActivity && !editMode &&
-                    <ActivityDetails activity={selectedActivity} setEditMode={setEditMode} setSelectedActivity={setSelectedActivity}/>
-                }
-                {
-                    editMode && <ActivityForm setEditMode={setEditMode} activity={selectedActivity}/>
-                }
+                {selectedActivity && !editMode && (
+                    <ActivityDetails/>
+                )}
+                {editMode && (
+                    <ActivityForm
+                        key={(selectedActivity && selectedActivity.id) || 0}
+                        activity={selectedActivity!}
+                    />
+                )}
             </Grid.Column>
         </Grid>
     );
-}
+};
 
-export default ActivityDashBoard;
+
+export default observer(ActivityDashBoard);

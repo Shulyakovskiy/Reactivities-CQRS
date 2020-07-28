@@ -1,5 +1,4 @@
-using System;
-using Ls.Application.Activities.Query;
+using Ls.Application.Activities.Command;
 using Ls.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +18,7 @@ namespace Ls.Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,8 +37,7 @@ namespace Ls.Api
                         .WithOrigins("*");
                 });
             });
-            services.AddMediatR(typeof(ListActivities.Handler).Assembly);
-            // services.AddMediatR(typeof(Startup));
+            services.AddMediatR(typeof(CreateActivities).Assembly);
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {

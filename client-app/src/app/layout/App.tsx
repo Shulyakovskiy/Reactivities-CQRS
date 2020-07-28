@@ -1,51 +1,33 @@
 import * as React from "react";
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useContext, useEffect} from "react";
 import {Container} from "semantic-ui-react";
-import axios from "axios";
-import {IActivity} from "../model";
 import {NavBar} from "../../../features";
+import LoadingComponent from "./LoadingComponent";
 import ActivityDashBoard from "../../../features/activities";
+import {ActivitiesStore} from "../stores";
+import {observer} from "mobx-react-lite";
+import 'mobx-react-lite/batchingForReactDom'
 
 
 const App = () => {
-
-    const [activities, setActivities] = useState<IActivity[]>([]);
-    const [selectedActivity, setSelectedActivity] = useState<IActivity | null>(null);
-    const [editMode, setEditMode] = useState(false);
-
-    const handleSelectActivity = (id: string) => {
-        setSelectedActivity(activities.filter(a => a.id == id)[0]);
-    }
-
-    const handleOpenCreateForm = () => {
-        setSelectedActivity(null);
-        setEditMode(true);
-    }
-
+    const activityStore = useContext(ActivitiesStore);
+    
     useEffect(() => {
-        axios.get<IActivity[]>('http://localhost:5000/api/activities')
-            .then((resp) => {
-                setActivities(resp.data);
-            })
-    }, [])
+        activityStore.loadActivities().then();
+    }, [activityStore]);
+
+    if (activityStore.loadingInitial) return <LoadingComponent content='Loading activities'/>
 
     return (
         <Fragment>
-            <NavBar openCreateForm={handleOpenCreateForm}/>
+            <NavBar/>
             <Container style={{marginTop: '7em'}}>
-                <ActivityDashBoard
-                    activities={activities}
-                    selectActivity={handleSelectActivity}
-                    selectedActivity={selectedActivity}
-                    editMode={editMode}
-                    setEditMode={setEditMode}
-                    setSelectedActivity={setSelectedActivity}/>
+                <ActivityDashBoard/>
             </Container>
-
         </Fragment>
-    )
-}
+    );
+};
 
 // export default hot(module)(App);
-export default App;
+export default observer(App);
 
