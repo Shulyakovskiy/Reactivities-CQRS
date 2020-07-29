@@ -21,8 +21,8 @@ const App: React.FC<RouteComponentProps> = ({location}) => {
                     <Container style={{marginTop: '7em'}}>
                         <Switch>
                             <Route exact path='/activities' component={ActivityDashBoard}/>
-                            <Route path='/activity/:id' component={ActivityDetails}/>
-                            <Route key={location.key} path={['/createActivity', '/manage/:id']}
+                            <Route path='/activity' component={ActivityDetails}/>
+                            <Route key={location.key} path={['/create-activity', '/manage']}
                                    component={ActivityForm}/>
                         </Switch>
                     </Container>

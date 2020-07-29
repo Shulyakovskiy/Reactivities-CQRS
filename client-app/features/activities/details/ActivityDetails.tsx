@@ -3,18 +3,25 @@ import {useContext, useEffect} from "react";
 import {Button, Card, Image} from "semantic-ui-react";
 import {ActivitiesStore} from "../../../src/app/stores";
 import {observer} from "mobx-react-lite";
-import {Link, RouteComponentProps} from "react-router-dom";
+import {Link, RouteComponentProps, useLocation} from "react-router-dom";
 import LoadingComponent from "../../../src/app/layout/LoadingComponent";
 
 interface DetailParams {
     id: string;
 }
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({match, history}) => {
+    let query = useQuery();
     const activityStore = useContext(ActivitiesStore);
     const {activity, loadActivity, loadingInitial} = activityStore;
     useEffect(() => {
-        loadActivity(match.params.id).then();
+        const id = query.get("id");
+        //match.param.id
+        loadActivity(id).then();
     }, [loadActivity]);
 
     if (loadingInitial || !activity) return <LoadingComponent content='Loading Activity'/>
@@ -33,7 +40,7 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({match, hi
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths={2}>
-                    <Button as={Link} to={`/manage/${activity.id}`} basic color='blue' content='Edit'/>
+                    <Button as={Link} to={`/manage?id=${activity.id}`} basic color='blue' content='Edit'/>
                     <Button onClick={() => history.push('/activities')} basic color='grey' content='Cancel'/>
                 </Button.Group>
             </Card.Content>

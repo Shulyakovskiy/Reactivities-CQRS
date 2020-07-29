@@ -21,7 +21,8 @@
   "bugs": {
     "url": "https://github.com/vikpe/react-webpack-typescript-starter/issues"
   },
-  "homepage": "https://github.com/vikpe/react-webpack-typescript-starter",
+  "homepage": "./",
+  "main": "./index.tsx",
   "scripts": {
     "build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
     "clean-dist": "rimraf dist/*",

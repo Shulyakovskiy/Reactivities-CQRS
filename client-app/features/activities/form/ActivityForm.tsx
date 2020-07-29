@@ -5,15 +5,20 @@ import {v4 as uuid} from 'uuid';
 import {IActivity} from "../../../src/app/models";
 import {ActivitiesStore} from "../../../src/app/stores";
 import {observer} from "mobx-react-lite";
-import {RouteComponentProps} from "react-router-dom";
+import {RouteComponentProps, useLocation} from "react-router-dom";
 
 interface DetailParam {
     id: string;
 }
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 const ActivityForm: React.FC<RouteComponentProps<DetailParam>> = ({match, history}) => {
     const activityStore = useContext(ActivitiesStore);
     const {createActivity, editActivity, submitting, activity: initialFormState, loadActivity, clearActivity} = activityStore
+    let query = useQuery();
 
     const [activity, setActivity] = useState<IActivity>({
         id: '',
@@ -24,16 +29,22 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParam>> = ({match, histor
         city: '',
         venue: ''
     });
+    const id = query.get("id");
 
-    useEffect(() => {
-        if (match.params.id && activity.id.length === 0) {
-            loadActivity(match.params.id)
+    const  loadData = () => {
+        //match.params.id
+        if (id && activity.id.length === 0) {
+            loadActivity(id)
                 .then(() => initialFormState && setActivity(initialFormState));
         }
         return () => {
             clearActivity()
         }
-    }, [loadActivity, clearActivity, match.params.id, initialFormState, activity.id.length]);
+    }
+
+    useEffect(() => {
+        return loadData();
+    }, [loadData]);
 
     const handleSubmit = () => {
         if (activity.id.length === 0) {
