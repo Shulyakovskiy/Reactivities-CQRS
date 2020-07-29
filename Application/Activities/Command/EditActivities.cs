@@ -45,12 +45,17 @@ namespace Ls.Application.Activities.Command
                 activity.City = request.City ?? activity.City;
                 activity.Venue = request.Venue ?? activity.Venue;
 
-
-                var success = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if (success)
-                    return Unit.Value;
-
-                throw new Exception("Problem saving changes");
+                try
+                {
+                    var success = await _context.SaveChangesAsync(cancellationToken) > 0;
+                    if (success)
+                        return Unit.Value;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Problem saving changes - {e.Message}");
+                }
+                return default;
             }
         }
     }
