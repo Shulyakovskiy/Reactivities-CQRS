@@ -9,7 +9,6 @@ class ActivitiesStore {
     @observable activityRegistry = new Map();
     @observable activities: IActivity[] = [];
     @observable selectedActivity: IActivity | undefined = undefined;
-    @observable activity: IActivity | null = null;
     @observable editMode = false;
     @observable loadingInitial = false;
     @observable submitting = false;
@@ -49,13 +48,13 @@ class ActivitiesStore {
     @action loadActivity = async (id: string) => {
         let activity = this.getActivity(id);
         if (activity) {
-            this.activity = activity;
+            this.selectedActivity = activity;
         } else {
             this.loadingInitial = true;
             try {
                 activity = await agent.Activities.details(id);
                 runInAction('getting activity', () => {
-                    this.activity = activity;
+                    this.selectedActivity = activity;
                     this.loadingInitial = false;
                 })
             } catch (error) {
@@ -68,7 +67,7 @@ class ActivitiesStore {
     }
 
     @action clearActivity = () => {
-        this.activity = null;
+        this.selectedActivity = null;
     }
 
     getActivity = (id: string) => {
@@ -97,7 +96,7 @@ class ActivitiesStore {
             await agent.Activities.update(activity);
             runInAction('editing activity', () => {
                 this.activityRegistry.set(activity.id, activity);
-                this.activity = activity;
+                this.selectedActivity = activity;
                 this.submitting = false;
             })
         } catch (error) {

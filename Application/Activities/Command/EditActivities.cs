@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Ls.Persistence;
 using MediatR;
+using System.Globalization;
 
 namespace Ls.Application.Activities.Command
 {
@@ -16,7 +18,7 @@ namespace Ls.Application.Activities.Command
             public string Title { get; set; }
             public string Description { get; set; }
             public string Category { get; set; }
-            public DateTime? Date { get; set; }
+            public string Date { get; set; }
             public string City { get; set; }
             public string Venue { get; set; }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Ls.Domain;
 
@@ -16,7 +17,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Past Activity 1",
-                        Date = DateTime.Now.AddMonths(-2),
+                        Date = DateTime.Now.AddMonths(-2).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 2 months ago",
                         Category = "drinks",
                         City = "London",
@@ -25,7 +26,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Past Activity 2",
-                        Date = DateTime.Now.AddMonths(-1),
+                        Date = DateTime.Now.AddMonths(-1).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 1 month ago",
                         Category = "culture",
                         City = "Paris",
@@ -34,7 +35,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 1",
-                        Date = DateTime.Now.AddMonths(1),
+                        Date = DateTime.Now.AddMonths(1).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 1 month in future",
                         Category = "culture",
                         City = "London",
@@ -43,7 +44,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 2",
-                        Date = DateTime.Now.AddMonths(2),
+                        Date = DateTime.Now.AddMonths(2).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 2 months in future",
                         Category = "music",
                         City = "London",
@@ -52,7 +53,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 3",
-                        Date = DateTime.Now.AddMonths(3),
+                        Date = DateTime.Now.AddMonths(3).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 3 months in future",
                         Category = "drinks",
                         City = "London",
@@ -61,7 +62,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 4",
-                        Date = DateTime.Now.AddMonths(4),
+                        Date = DateTime.Now.AddMonths(4).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 4 months in future",
                         Category = "drinks",
                         City = "London",
@@ -70,7 +71,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 5",
-                        Date = DateTime.Now.AddMonths(5),
+                        Date = DateTime.Now.AddMonths(5).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 5 months in future",
                         Category = "drinks",
                         City = "London",
@@ -79,7 +80,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 6",
-                        Date = DateTime.Now.AddMonths(6),
+                        Date = DateTime.Now.AddMonths(6).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 6 months in future",
                         Category = "music",
                         City = "London",
@@ -88,7 +89,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 7",
-                        Date = DateTime.Now.AddMonths(7),
+                        Date = DateTime.Now.AddMonths(7).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 2 months ago",
                         Category = "travel",
                         City = "London",
@@ -97,7 +98,7 @@ namespace Ls.Persistence
                     new Activity
                     {
                         Title = "Future Activity 8",
-                        Date = DateTime.Now.AddMonths(8),
+                        Date = DateTime.Now.AddMonths(8).ToString(CultureInfo.InvariantCulture),
                         Description = "Activity 8 months in future",
                         Category = "film",
                         City = "London",
