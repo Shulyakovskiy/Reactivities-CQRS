@@ -52,9 +52,9 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParam>> = ({match, histor
                 ...activity,
                 id: uuid()
             };
-            createActivity(newActivity).then(() => history.push(`/activity/${newActivity.id}`));
+            createActivity(newActivity).then(() => history.push(`/activity?id=${newActivity.id}`));
         } else {
-            editActivity(activity).then(() => history.push(`/activity/${activity.id}`));
+            editActivity(activity).then(() => history.push(`/activity?id=${activity.id}`));
         }
     };
 
