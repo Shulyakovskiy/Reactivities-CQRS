@@ -30,21 +30,17 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParam>> = ({match, histor
         venue: ''
     });
     const id = query.get("id");
-
-    const  loadData = () => {
-        //match.params.id
-        if (id && activity.id.length === 0) {
+    
+    useEffect(() => {
+        console.log('init')
+        if (id) {
             loadActivity(id)
                 .then(() => initialFormState && setActivity(initialFormState));
         }
         return () => {
             clearActivity()
         }
-    }
-
-    useEffect(() => {
-        return loadData();
-    }, [loadData]);
+    }, [loadActivity, initialFormState, setActivity, clearActivity, id]);
 
     const handleSubmit = () => {
         if (activity.id.length === 0) {
