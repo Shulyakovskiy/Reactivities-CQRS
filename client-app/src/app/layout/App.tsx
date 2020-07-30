@@ -1,13 +1,14 @@
 import * as React from "react";
 import {Fragment} from "react";
 import {Container} from "semantic-ui-react";
-import {NavBar} from "../../../features";
-import ActivityDashBoard, {ActivityDetails} from "../../../features/activities";
 import {observer} from "mobx-react-lite";
 import {Route, RouteComponentProps, Switch, withRouter} from "react-router-dom";
 import 'mobx-react-lite/batchingForReactDom'
-import HomePage from "../../../features/home/HomePage";
-import ActivityForm from "../../../features/activities/form/ActivityForm";
+import {HomePage} from "../../../features/home";
+import {ActivityForm} from "../../../features/activities/form";
+import {NavBar} from "../../../features/nav";
+import ActivityDashBoard from "../../../features/activities/dashboard/ActivityDashboard";
+import {ActivityDetails} from "../../../features/activities/details";
 
 
 const App: React.FC<RouteComponentProps> = ({location}) => {

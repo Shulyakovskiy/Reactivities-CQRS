@@ -1,10 +1,10 @@
 ﻿import * as  React from "react";
 import {Grid} from "semantic-ui-react";
-import {ActivityList} from "../index";
 import {observer} from "mobx-react-lite";
 import {useContext, useEffect} from "react";
 import {ActivitiesStore} from "../../../src/app/stores";
 import LoadingComponent from "../../../src/app/layout/LoadingComponent";
+import {ActivityList} from "./index";
 
 const ActivityDashBoard: React.FC = () => {
     const activityStore = useContext(ActivitiesStore);
