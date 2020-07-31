@@ -1,11 +1,12 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 using JetBrains.Annotations;
+using Ls.Application.Errors;
 using Ls.Persistence;
 using MediatR;
-using System.Globalization;
 
 namespace Ls.Application.Activities.Command
 {
@@ -22,6 +23,19 @@ namespace Ls.Application.Activities.Command
             public string City { get; set; }
             public string Venue { get; set; }
         }
+        
+        public class CommandValidator: AbstractValidator<CreateActivities.Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Title).NotEmpty();
+                RuleFor(x => x.Description).NotEmpty();
+                RuleFor(x => x.Category).NotEmpty();
+                RuleFor(x => x.Date).NotEmpty();
+                RuleFor(x => x.City).NotEmpty();
+                RuleFor(x => x.Venue).NotEmpty();
+            }
+        }
 
         public class Handler : IRequestHandler<Command>
         {
@@ -36,7 +50,7 @@ namespace Ls.Application.Activities.Command
             {
                 var activity = await _context.Activities.FindAsync(request.Id);
                 if (activity == null)
-                    throw new Exception("Could not find activity");
+                    throw new RestException(HttpStatusCode.NotFound, new {activity = "Not Found"});
 
                 activity.Title = request.Title ?? activity.Title;
                 activity.Description = request.Description ?? activity.Description;
@@ -53,7 +67,7 @@ namespace Ls.Application.Activities.Command
                 }
                 catch (Exception e)
                 {
-                    throw new Exception($"Problem saving changes - {e.Message}");
+                    throw new Exception($"Problem edit activity - {e.Message}");
                 }
                 return default;
             }

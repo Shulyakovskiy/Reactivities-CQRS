@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 using JetBrains.Annotations;
 using Ls.Domain;
 using Ls.Persistence;
@@ -20,6 +21,19 @@ namespace Ls.Application.Activities.Command
             public string Date { get; set; }
             public string City { get; set; }
             public string Venue { get; set; }
+        }
+        
+        public class CommandValidator: AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Title).NotEmpty();
+                RuleFor(x => x.Description).NotEmpty();
+                RuleFor(x => x.Category).NotEmpty();
+                RuleFor(x => x.Date).NotEmpty();
+                RuleFor(x => x.City).NotEmpty();
+                RuleFor(x => x.Venue).NotEmpty();
+            }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -43,12 +57,21 @@ namespace Ls.Application.Activities.Command
                     City = request.City,
                     Venue = request.Venue
                 };
-                await _context.Activities.AddAsync(activity, cancellationToken);
-                var success = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if (success)
-                    return Unit.Value;
-                //TODO: Make CONST Response answer
-                throw new Exception("Problem saving changes");
+
+                try
+                {
+                    await _context.Activities.AddAsync(activity, cancellationToken);
+                    var success = await _context.SaveChangesAsync(cancellationToken) > 0;
+                    if (success)
+                        return Unit.Value;
+                }
+                catch (Exception e)
+                {
+                    //TODO: Make CONST Response answer
+                    throw new Exception($"Problem create activity - {e.Message}");
+                }
+
+                return default;
             }
         }
     }

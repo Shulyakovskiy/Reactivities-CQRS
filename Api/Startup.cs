@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using Ls.Api.Middleware;
 using Ls.Application.Activities.Command;
 using Ls.Persistence;
 using MediatR;
@@ -38,7 +40,8 @@ namespace Ls.Api
                 });
             });
             services.AddMediatR(typeof(CreateActivities).Assembly);
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<CreateActivities>(); });
             services.AddSwaggerGen(options =>
             {
                 options.CustomSchemaIds(c => c.FullName);
@@ -53,6 +56,7 @@ namespace Ls.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -61,11 +65,10 @@ namespace Ls.Api
             });
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                // app.UseDeveloperExceptionPage();
             }
 
             app.UseCors("CorsPolicy");
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

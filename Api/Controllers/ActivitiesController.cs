@@ -55,7 +55,7 @@ namespace Ls.Api.Controllers
         [HttpDelete]
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
-            return await _mediator.Send(new DeleteActivities.Command{Id = id});
+            return await _mediator.Send(new DeleteActivities.Command {Id = id});
         }
     }
 }
