@@ -14,15 +14,15 @@ class ActivitiesStore {
     @observable target = '';
 
     @computed get activitiesByDate() {
-        return this.groupActivitiesByDate(Array.from(this.activityRegistry.values()));
+        return ActivitiesStore.groupActivitiesByDate(Array.from(this.activityRegistry.values()));
     }
 
-    private groupActivitiesByDate(activity: IActivity[]) {
-        const sortedActivities = activity.sort(
-            (a, b) => Date.parse(a.date) - Date.parse(b.date)
+    private static groupActivitiesByDate(activities: IActivity[]) {
+        const sortedActivities = activities.sort(
+            (a, b) => a.date.getTime() - b.date.getTime()
         );
         return Object.entries(sortedActivities.reduce((activities, activity) => {
-            const date = activity.date.split('T')[0];
+            const date = activity.date.toISOString().split('T')[0];
             activities[date] = activities[date] ? [...activities[date], activity] : [activity];
             return activities;
         }, {} as {[key: string]: IActivity[]}));
@@ -34,12 +34,11 @@ class ActivitiesStore {
             const activities = await agent.Activities.list();
             runInAction('loading activities', () => {
                 activities.forEach(activity => {
-                    activity.date = activity.date.split('.')[0];
+                    activity.date = new Date(activity.date);
                     this.activityRegistry.set(activity.id, activity);
                 });
                 this.loadingInitial = false;
             })
-
         } catch (error) {
             runInAction('load activities error', () => {
                 this.loadingInitial = false;
@@ -48,23 +47,28 @@ class ActivitiesStore {
     };
 
 
+
     @action loadActivity = async (id: string) => {
         let activity = this.getActivity(id);
         if (activity) {
             this.activity = activity;
+            return activity;
         } else {
             this.loadingInitial = true;
             try {
                 activity = await agent.Activities.details(id);
-                runInAction('getting activity', () => {
+                runInAction('getting activity',() => {
+                    activity.date = new Date(activity.date);
                     this.activity = activity;
+                    this.activityRegistry.set(activity.id, activity);
                     this.loadingInitial = false;
                 })
+                return activity;
             } catch (error) {
                 runInAction('get activity error', () => {
                     this.loadingInitial = false;
                 })
-                console.log(error)
+                console.log(error);
             }
         }
     }

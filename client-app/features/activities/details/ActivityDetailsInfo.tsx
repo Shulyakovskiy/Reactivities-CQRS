@@ -22,7 +22,7 @@ const ActivityDetailsInfo: React.FC<{ activity: IActivity }> = ({activity}) => {
                     </Grid.Column>
                     <Grid.Column width={15}>
             <span>
-              {activity.date}
+              {activity.date.toISOString()}
             </span>
                     </Grid.Column>
                 </Grid>

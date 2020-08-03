@@ -6,6 +6,10 @@ import "./assets/scss/styles.scss";
 import "react-toastify/dist/ReactToastify.min.css";
 import {Router} from "react-router-dom";
 import ScrollToTop from "./app/layout/ScrolToTop";
+// import dateFnsLocalizer from 'react-widgets-date-fns';
+//
+// dateFnsLocalizer();
+
 
 export const appHistory = createBrowserHistory();
 

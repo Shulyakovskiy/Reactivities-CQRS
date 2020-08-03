@@ -72,6 +72,7 @@ namespace Ls.Api
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseHsts();
         }
     }
 }

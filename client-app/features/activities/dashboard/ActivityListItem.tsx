@@ -32,7 +32,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({activity}) => {
                 <Item.Image size='tiny' circular src='../../src/assets/img/user.png'/>
             </Segment>
             <Segment>
-                <Icon name='clock'/> {activity.date} <br/>
+                <Icon name='clock'/> {activity.date.toISOString()} <br/>
                 <Icon name='marker'/> {activity.venue}, {activity.city}
             </Segment>
             <Segment secondary>

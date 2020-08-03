@@ -1,1 +1,2 @@
-﻿export {IActivity} from './activity'
+﻿export {IActivity} from './activity';
+export {ActivityFormValues} from "./activity";
