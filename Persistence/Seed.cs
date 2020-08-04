@@ -2,14 +2,45 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Ls.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ls.Persistence
 {
     public class Seed
     {
-        public static void SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                var users = new List<AppUser>
+                {
+                    new AppUser
+                    {
+                        DisplayName = "SEA",
+                        UserName = "sea",
+                        Email = "sea@mail.ru"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@mail.ru"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Jane",
+                        UserName = "jane",
+                        Email = "jane@mail.ru"
+                    }
+                };
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+
             if (!context.Activities.Any())
             {
                 var activities = new List<Activity>
@@ -105,8 +136,8 @@ namespace Ls.Persistence
                         Venue = "Cinema",
                     }
                 };
-                context.Activities.AddRange(activities);
-                context.SaveChanges();
+                await context.Activities.AddRangeAsync(activities);
+                await context.SaveChangesAsync();
             }
         }
     }
