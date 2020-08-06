@@ -1,6 +1,6 @@
 using System;
 using JetBrains.Annotations;
-using Ls.Domain;
+using Ls.Domain.User;
 using Ls.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

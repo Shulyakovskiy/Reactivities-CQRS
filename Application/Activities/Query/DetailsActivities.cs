@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Ls.Application.Errors;
 using Ls.Domain;
+using Ls.Domain.Activity;
 using Ls.Persistence;
 using MediatR;
 

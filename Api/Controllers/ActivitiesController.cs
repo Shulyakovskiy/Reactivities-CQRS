@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Ls.Application.Activities.Command;
 using Ls.Application.Activities.Query;
 using Ls.Domain;
+using Ls.Domain.Activity;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ls.Api.Controllers
@@ -23,6 +25,7 @@ namespace Ls.Api.Controllers
 
         [Route("Details/{id}")]
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<Activity>> Details(Guid id)
         {
             return await Mediator.Send(new DetailsActivities.Query {Id = id});

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ls.Domain
+namespace Ls.Domain.Activity
 {
     public class Activity
     {

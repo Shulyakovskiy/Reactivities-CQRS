@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Ls.Domain;
+using Ls.Domain.Activity;
 using Ls.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

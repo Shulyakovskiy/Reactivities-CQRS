@@ -1,21 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <AssemblyName>Ls.Api</AssemblyName>
-        <RootNamespace>Ls.Api</RootNamespace>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Application\Ls.Application.csproj" />
-      <ProjectReference Include="..\Persistence\Ls.Persistence.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
-    </ItemGroup>
-
-
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Ls.Api</AssemblyName>
+    <RootNamespace>Ls.Api</RootNamespace>
+    <UserSecretsId>945aff30-3b6c-4924-a838-f60a93d6dd3e</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Ls.Application.csproj" />
+    <ProjectReference Include="..\Ls.Infrastructure\Ls.Infrastructure.csproj" />
+    <ProjectReference Include="..\Persistence\Ls.Persistence.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+  </ItemGroup>
 </Project>

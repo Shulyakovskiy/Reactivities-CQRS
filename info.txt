@@ -1,0 +1,15 @@
+﻿--- EF command line syntax ---
+dotnet ef migrations add InitialCreate -p Persistence/ -s Api/
+
+--- Secret storage ---
+dotnet user-secrets init -p Api/
+dotnet user-secrets set "TokenKey" "super secret key" -p Api/
+dotnet user-secrets list -p Api/
+
+---- Structure Project ----
+Api- endpoint controllers
+Application - business logic CQRS
+Domain - POCO classes
+Common - Utils/Helpers
+Persistence - Repository/DAL
+Infrastructure - Infrastructure App logic - accessors and  helpers

@@ -1,4 +1,5 @@
-﻿using Ls.Domain;
+﻿using Ls.Domain.Activity;
+using Ls.Domain.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

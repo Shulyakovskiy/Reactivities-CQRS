@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Ls.Domain;
+using Ls.Domain.Activity;
+using Ls.Domain.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace Ls.Persistence

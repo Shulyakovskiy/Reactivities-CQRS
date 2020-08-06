@@ -1,1 +1,0 @@
-﻿dotnet ef migrations add InitialCreate -p Persistence/ -s Api/
