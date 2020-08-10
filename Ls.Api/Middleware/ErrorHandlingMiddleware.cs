@@ -2,12 +2,14 @@
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Ls.Application.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace Ls.Api.Middleware
 {
+    [UsedImplicitly]
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;

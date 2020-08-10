@@ -7,9 +7,10 @@
     <UserSecretsId>945aff30-3b6c-4924-a838-f60a93d6dd3e</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\Ls.Application.csproj" />
+    <ProjectReference Include="..\Ls.Application\Ls.Application.csproj" />
+    <ProjectReference Include="..\Ls.Domain\Ls.Domain.csproj" />
     <ProjectReference Include="..\Ls.Infrastructure\Ls.Infrastructure.csproj" />
-    <ProjectReference Include="..\Persistence\Ls.Persistence.csproj" />
+    <ProjectReference Include="..\Ls.Persistence\Ls.Persistence.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />

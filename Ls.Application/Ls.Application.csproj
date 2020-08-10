@@ -5,18 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Domain\Ls.Domain.csproj" />
-      <ProjectReference Include="..\Persistence\Ls.Persistence.csproj" />
+      <ProjectReference Include="..\Ls.Domain\Ls.Domain.csproj" />
+      <ProjectReference Include="..\Ls.Persistence\Ls.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
       <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Login\Command" />
     </ItemGroup>
 
 </Project>
