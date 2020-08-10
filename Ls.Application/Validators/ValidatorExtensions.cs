@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using FluentValidation;
+using JetBrains.Annotations;
 
 namespace Ls.Application.Validators
 {
     public static class ValidatorExtensions
     {
+        [UsedImplicitly]
         public static IRuleBuilder<T, string> Password<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             var options = ruleBuilder

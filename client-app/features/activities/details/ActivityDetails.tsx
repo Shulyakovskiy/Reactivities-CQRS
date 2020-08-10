@@ -1,7 +1,7 @@
 ﻿import * as  React from "react";
 import {useContext, useEffect} from "react";
 import {Grid} from "semantic-ui-react";
-import {ActivitiesStore} from "../../../src/app/stores";
+import {RootStoreContext} from "../../../src/app/stores";
 import {observer} from "mobx-react-lite";
 import {RouteComponentProps, useLocation} from "react-router-dom";
 import LoadingComponent from "../../../src/app/layout/LoadingComponent";
@@ -18,8 +18,8 @@ function useQuery() {
 
 const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({match, history}) => {
     let query = useQuery();
-    const activityStore = useContext(ActivitiesStore);
-    const {activity, loadActivity, loadingInitial} = activityStore;
+    const rootStore = useContext(RootStoreContext);
+    const {activity, loadActivity, loadingInitial} = rootStore.activitiesStore;
     useEffect(() => {
         const id = query.get("id");
         //match.param.id

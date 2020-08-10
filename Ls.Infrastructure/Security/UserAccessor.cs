@@ -20,7 +20,7 @@ namespace Ls.Infrastructure.Security
                 .HttpContext
                 .User?
                 .Claims?
-                .FirstOrDefault(x =>x.Type == ClaimTypes.Name)?.Value;
+                .FirstOrDefault(x =>x.Type == ClaimTypes.NameIdentifier)?.Value;
             
             return username;
         }

@@ -1,11 +1,19 @@
 ﻿import {action, computed, configure, observable, runInAction} from "mobx";
-import {createContext, SyntheticEvent} from "react";
+import {SyntheticEvent} from "react";
 import {IActivity} from "../models";
 import agent from "../api/agent";
+import {RootStore} from "./RootStore";
 
 configure({enforceActions: 'observed'})
 
-class ActivitiesStore {
+export default class ActivitiesStore {
+    rootStore: RootStore;
+
+    constructor(rootStore: RootStore) {
+        this.rootStore = rootStore;
+    }
+
+
     @observable activityRegistry = new Map();
     @observable activities: IActivity[] = [];
     @observable activity: IActivity | null = null;
@@ -25,7 +33,7 @@ class ActivitiesStore {
             const date = activity.date.toISOString().split('T')[0];
             activities[date] = activities[date] ? [...activities[date], activity] : [activity];
             return activities;
-        }, {} as {[key: string]: IActivity[]}));
+        }, {} as { [key: string]: IActivity[] }));
     }
 
     @action loadActivities = async () => {
@@ -47,7 +55,6 @@ class ActivitiesStore {
     };
 
 
-
     @action loadActivity = async (id: string) => {
         let activity = this.getActivity(id);
         if (activity) {
@@ -57,7 +64,7 @@ class ActivitiesStore {
             this.loadingInitial = true;
             try {
                 activity = await agent.Activities.details(id);
-                runInAction('getting activity',() => {
+                runInAction('getting activity', () => {
                     activity.date = new Date(activity.date);
                     this.activity = activity;
                     this.activityRegistry.set(activity.id, activity);
@@ -136,5 +143,3 @@ class ActivitiesStore {
     }
 
 }
-
-export default createContext(new ActivitiesStore());

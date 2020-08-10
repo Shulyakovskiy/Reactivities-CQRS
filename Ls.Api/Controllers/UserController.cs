@@ -10,6 +10,7 @@ namespace Ls.Api.Controllers
 {
     public class UserController : BaseController
     {
+     
         [AllowAnonymous]
         [Route("Login")]
         [HttpPost]
@@ -26,7 +27,7 @@ namespace Ls.Api.Controllers
             return await Mediator.Send(command);
         }
 
-        [Route("User")]
+        [Route("Detail")]
         [HttpGet]
         public async Task<ActionResult<User>> CurrentUser()
         {

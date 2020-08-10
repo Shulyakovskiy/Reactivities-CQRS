@@ -32,7 +32,7 @@ namespace Ls.Application.Login.Command
                 RuleFor(x => x.DisplayName).NotEmpty();
                 RuleFor(x => x.UserName).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty();
-                RuleFor(x => x.Password).Password();
+                RuleFor(x => x.Password).NotEmpty();
             }
         }
 
