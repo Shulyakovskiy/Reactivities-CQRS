@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Ls.Domain.Activity.Dto;
-using Ls.Domain.Activity.Entity;
+using Ls.Application.Activities.Dto;
+using Ls.Domain.Activity;
+using Ls.Domain.User;
 using Ls.Domain.User.Entity;
 
 namespace Ls.Application.Activities.Mappings

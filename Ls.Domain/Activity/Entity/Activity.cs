@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ls.Domain.User;
+using Ls.Domain.User.Entity;
 
 namespace Ls.Domain.Activity
 {

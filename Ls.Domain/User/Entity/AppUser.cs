@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ls.Domain.User.Entity;
 using Microsoft.AspNetCore.Identity;
 
 namespace Ls.Domain.User
